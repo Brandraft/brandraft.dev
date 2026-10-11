@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>brandraft</title>
+  <meta name="description" content="brandraft: small open-source things. Love Letter, playable in a browser, from curl, and by agents.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --fg: #e5e5e5;
+      --muted: #6b6b6b;
+      --line: #1f1f1f;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font: 15px/1.6 ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+      display: grid;
+      place-items: center;
+      padding: 2rem 1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { width: min(100%, 34rem); }
+    h1 { font-size: 1rem; font-weight: 500; letter-spacing: 0.02em; }
+    p.lede { color: var(--muted); margin-top: 0.25rem; }
+    ul { list-style: none; margin-top: 2rem; border-top: 1px solid var(--line); }
+    li {
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: center;
+      padding: 0.9rem 0;
+    }
+    li small { display: block; color: var(--muted); font-size: 0.9em; }
+    nav { display: flex; gap: 1.25rem; white-space: nowrap; }
+    nav a { color: var(--muted); text-decoration: none; transition: color 150ms ease; }
+    nav a:hover, nav a:focus-visible { color: var(--fg); }
+    a.me { display: inline-block; margin-top: 1.5rem; color: var(--muted); text-decoration: none; transition: color 150ms ease; }
+    a.me:hover, a.me:focus-visible { color: var(--fg); }
+    a:focus-visible { outline: 1px solid var(--muted); outline-offset: 4px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>brandraft</h1>
+    <p class="lede">small open-source things</p>
+    <ul>
+      <li>
+        <div>love letter<small>the card game, for browsers, curl and agents</small></div>
+        <nav>
+          <a href="https://loveletter.brandraft.dev/">play →</a>
+          <a href="https://github.com/Brandraft/love-letter">github →</a>
+        </nav>
+      </li>
+    </ul>
+    <a class="me" href="https://github.com/Brandraft" rel="me noopener">github</a>
+  </main>
+</body>
+</html>
