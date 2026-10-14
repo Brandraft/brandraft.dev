@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>brandraft</title>
-  <meta name="description" content="brandraft: small open-source things. Love Letter, playable in a browser, from curl, and by agents.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>brandraft</title>
+<meta name="description" content="brandraft: small open-source things. Love Letter, playable in a browser, from curl, and by agents.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="brandraft">
   <meta property="og:description" content="small open-source things. Love Letter: the card game for browsers, curl and agents.">
@@ -16,62 +16,144 @@
   <meta name="twitter:title" content="brandraft">
   <meta name="twitter:description" content="small open-source things. Love Letter: the card game for browsers, curl and agents.">
   <meta name="twitter:image" content="https://brandraft.dev/og.png">
-  <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#0a0a0a">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <style>
-    :root {
-      --bg: #0a0a0a;
-      --fg: #e5e5e5;
-      --muted: #6b6b6b;
-      --line: #1f1f1f;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      background: var(--bg);
-      color: var(--fg);
-      font: 15px/1.6 ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
-      display: grid;
-      place-items: center;
-      padding: 2rem 1rem;
-      -webkit-font-smoothing: antialiased;
-    }
-    main { width: min(100%, 34rem); }
-    h1 { font-size: 1rem; font-weight: 500; letter-spacing: 0.02em; }
-    p.lede { color: var(--muted); margin-top: 0.25rem; }
-    ul { list-style: none; margin-top: 2rem; border-top: 1px solid var(--line); }
-    li {
-      border-bottom: 1px solid var(--line);
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 1rem;
-      align-items: center;
-      padding: 0.9rem 0;
-    }
-    li small { display: block; color: var(--muted); font-size: 0.9em; }
-    nav { display: flex; gap: 1.25rem; white-space: nowrap; }
-    nav a { color: var(--muted); text-decoration: none; transition: color 150ms ease; }
-    nav a:hover, nav a:focus-visible { color: var(--fg); }
-    a.me { display: inline-block; margin-top: 1.5rem; color: var(--muted); text-decoration: none; transition: color 150ms ease; }
-    a.me:hover, a.me:focus-visible { color: var(--fg); }
-    a:focus-visible { outline: 1px solid var(--muted); outline-offset: 4px; }
-  </style>
+<style>
+  :root { --bg: #f2ede4; --ink: #1b1916; --soft: #6f685d; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: var(--bg); color: var(--ink); transition: background 0.4s, color 0.4s; }
+  .day { height: 400svh; }                     /* scrolling runs the next 24 hours; the page itself stays put */
+  body { font: 16px/1.5 ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif; }
+  .page { position: sticky; top: 0; height: 100svh; padding: 13vh 8vw 5vh; display: flex; flex-direction: column; max-width: 1200px; }
+  a { color: inherit; }
+  h1 { font: 800 clamp(56px, 16vw, 210px)/0.9 ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif; letter-spacing: -0.05em; }
+  .projects { margin-top: auto; padding-top: 14vh; }
+  .projects h2 { font-size: 13px; font-weight: 400; color: var(--soft); margin-bottom: 0.9rem; transition: color 1.2s; }
+  .projects ul { list-style: none; }
+  .projects li + li { margin-top: 2.2rem; }
+  .projects a.p { font: 700 clamp(36px, 8.5vw, 92px)/1 ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif; letter-spacing: -0.035em; text-decoration: none; }
+  .projects a.p:hover, .projects a.p:focus-visible { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 8px; }
+  .projects small { display: block; color: var(--soft); margin-top: 0.7rem; transition: color 1.2s; }
+  .social { display: flex; gap: 2rem; margin-top: 3.2rem; font: 650 23px/1 ui-sans-serif, system-ui, -apple-system, sans-serif; }
+  .social a { text-decoration: none; }
+  .social a:hover, .social a:focus-visible { text-decoration: underline; text-underline-offset: 5px; }
+  footer { margin-top: auto; padding-top: 12vh; display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; color: var(--soft); transition: color 1.2s; }
+  #clock { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; font-variant-numeric: tabular-nums; padding: 0.8rem 0 0.8rem 1.5rem; }
+  #clock:focus-visible { outline: 1px solid currentColor; outline-offset: 2px; }
+</style>
 </head>
 <body>
-  <main>
-    <h1>brandraft</h1>
-    <p class="lede">small open-source things</p>
+<div class="day"><div class="page">
+  <h1 data-h="16">brandraft</h1>
+  <section class="projects">
+    <h2>projects</h2>
     <ul>
       <li>
-        <div>love letter<small>the card game, for browsers, curl and agents</small></div>
-        <nav>
-          <a href="https://loveletter.brandraft.dev/">play →</a>
-          <a href="https://github.com/Brandraft/love-letter">github →</a>
-        </nav>
+        <a class="p" data-h="10" href="https://loveletter.brandraft.dev/">love letter</a>
+        <small>the card game, for browsers, curl and agents · <a href="https://github.com/Brandraft/love-letter">source</a></small>
       </li>
     </ul>
-    <a class="me" href="https://github.com/Brandraft" rel="me noopener">github</a>
-  </main>
+  </section>
+  <nav class="social"><a data-h="5" href="https://github.com/Brandraft">GitHub</a><a data-h="5" href="https://x.com/thebrandraft">X</a></nav>
+  <footer><a data-h="1.2" href="mailto:hi@brandraft.dev">hi@brandraft.dev</a><button id="clock" data-h="0.6"></button></footer>
+</div></div>
+<script>
+// Everything on the page stands off the paper at a height set by its rank: the name highest,
+// then projects, socials, and mail almost flat. The light is the real sun, where you are, now
+// (or the moon at night, as bright as its phase). Shadow length is height ÷ tan(altitude);
+// its direction is the sun's azimuth, with the top of your screen as north.
+// Sun and moon positions: low-precision formulas after Meeus (as in SunCalc).
+const rad = Math.PI / 180, e = rad * 23.4397;
+const toDays = t => t / 864e5 - 0.5 + 2440588 - 2451545;
+const ra = (l, b) => Math.atan2(Math.sin(l) * Math.cos(e) - Math.tan(b) * Math.sin(e), Math.cos(l));
+const dec = (l, b) => Math.asin(Math.sin(b) * Math.cos(e) + Math.cos(b) * Math.sin(e) * Math.sin(l));
+function sunCoords(d) {
+  const M = rad * (357.5291 + 0.98560028 * d);
+  const L = M + rad * (1.9148 * Math.sin(M) + 0.02 * Math.sin(2 * M) + 0.0003 * Math.sin(3 * M)) + rad * 102.9372 + Math.PI;
+  return { ra: ra(L, 0), dec: dec(L, 0) };
+}
+function moonCoords(d) {
+  const L = rad * (218.316 + 13.176396 * d), M = rad * (134.963 + 13.064993 * d), F = rad * (93.272 + 13.22935 * d);
+  const l = L + rad * 6.289 * Math.sin(M), b = rad * 5.128 * Math.sin(F);
+  return { ra: ra(l, b), dec: dec(l, b), dist: 385001 - 20905 * Math.cos(M) };
+}
+function sky(c, d, lat, lng) {            // azimuth from south, westward; altitude above the horizon
+  const H = rad * (280.16 + 360.9856235 * d) + rad * lng - c.ra, phi = rad * lat;
+  return { az: Math.atan2(Math.sin(H), Math.cos(H) * Math.sin(phi) - Math.tan(c.dec) * Math.cos(phi)),
+           alt: Math.asin(Math.sin(phi) * Math.sin(c.dec) + Math.cos(phi) * Math.cos(c.dec) * Math.cos(H)) };
+}
+function moonLit(d) {
+  const s = sunCoords(d), m = moonCoords(d), sd = 149598000;
+  const phi = Math.acos(Math.sin(s.dec) * Math.sin(m.dec) + Math.cos(s.dec) * Math.cos(m.dec) * Math.cos(s.ra - m.ra));
+  return (1 + Math.cos(Math.atan2(sd * Math.sin(phi), m.dist - sd * Math.cos(phi)))) / 2;
+}
+
+// Where you are, without asking: your time zone's city. Otherwise its UTC offset as longitude.
+const TZ = { 'Europe/Berlin': [52.5, 13.4], 'Europe/London': [51.5, -0.1], 'Europe/Paris': [48.9, 2.35], 'Europe/Amsterdam': [52.4, 4.9],
+  'Europe/Madrid': [40.4, -3.7], 'Europe/Rome': [41.9, 12.5], 'Europe/Istanbul': [41, 29], 'Europe/Moscow': [55.8, 37.6],
+  'Europe/Stockholm': [59.3, 18.1], 'Europe/Warsaw': [52.2, 21], 'Europe/Vienna': [48.2, 16.4], 'Europe/Zurich': [47.4, 8.5],
+  'Europe/Brussels': [50.8, 4.4], 'Europe/Lisbon': [38.7, -9.1], 'Europe/Athens': [38, 23.7], 'Europe/Dublin': [53.3, -6.3],
+  'Europe/Oslo': [59.9, 10.8], 'Europe/Copenhagen': [55.7, 12.6], 'Europe/Helsinki': [60.2, 24.9], 'Europe/Prague': [50.1, 14.4],
+  'Europe/Kyiv': [50.45, 30.5], 'America/New_York': [40.7, -74], 'America/Chicago': [41.9, -87.6], 'America/Denver': [39.7, -105],
+  'America/Los_Angeles': [34.05, -118.2], 'America/Toronto': [43.7, -79.4], 'America/Vancouver': [49.3, -123.1],
+  'America/Mexico_City': [19.4, -99.1], 'America/Sao_Paulo': [-23.5, -46.6], 'America/Argentina/Buenos_Aires': [-34.6, -58.4],
+  'America/Bogota': [4.7, -74.1], 'America/Phoenix': [33.4, -112.1], 'Pacific/Honolulu': [21.3, -157.9], 'Asia/Tokyo': [35.7, 139.7],
+  'Asia/Shanghai': [31.2, 121.5], 'Asia/Hong_Kong': [22.3, 114.2], 'Asia/Singapore': [1.35, 103.8], 'Asia/Kolkata': [19.1, 72.9],
+  'Asia/Calcutta': [19.1, 72.9], 'Asia/Dubai': [25.2, 55.3], 'Asia/Seoul': [37.6, 127], 'Asia/Jakarta': [-6.2, 106.8],
+  'Asia/Bangkok': [13.75, 100.5], 'Asia/Riyadh': [24.7, 46.7], 'Asia/Tehran': [35.7, 51.4], 'Asia/Karachi': [24.9, 67],
+  'Asia/Jerusalem': [31.8, 35.2], 'Asia/Taipei': [25, 121.5], 'Asia/Manila': [14.6, 121], 'Africa/Cairo': [30, 31.2],
+  'Africa/Lagos': [6.5, 3.4], 'Africa/Johannesburg': [-26.2, 28], 'Africa/Nairobi': [-1.3, 36.8], 'Africa/Casablanca': [33.6, -7.6],
+  'Australia/Sydney': [-33.9, 151.2], 'Australia/Melbourne': [-37.8, 145], 'Australia/Perth': [-31.95, 115.9], 'Pacific/Auckland': [-36.8, 174.8] };
+const zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+const [lat, lng] = TZ[zone] || [35, -new Date().getTimezoneOffset() / 4];
+
+// The paper takes the colour of the sky at that altitude.
+const STOPS = [[-18, '#101219'], [-10, '#1a1f31'], [-4, '#383c58'], [0, '#c89b88'], [4, '#ebc8a3'], [12, '#f1e2cb'], [30, '#f2ede4']];
+const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+function skyColour(a) {
+  if (a <= STOPS[0][0]) return hex(STOPS[0][1]);
+  for (let i = 1; i < STOPS.length; i++) if (a <= STOPS[i][0]) {
+    const [a0, c0] = STOPS[i - 1], [a1, c1] = STOPS[i], t = (a - a0) / (a1 - a0);
+    return hex(c0).map((v, k) => Math.round(v + (hex(c1)[k] - v) * t));
+  }
+  return hex(STOPS.at(-1)[1]);
+}
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+const els = [...document.querySelectorAll('[data-h]')], clock = document.getElementById('clock'), root = document.documentElement.style;
+let offset = 0;                          // minutes ahead of now, set by how far down you've scrolled
+
+function render() {
+  const t = Date.now() + offset * 6e4, d = toDays(t);
+  const sun = sky(sunCoords(d), d, lat, lng), moon = sky(moonCoords(d), d, lat, lng), sa = sun.alt / rad;
+  const bg = skyColour(sa), lum = (0.2126 * bg[0] + 0.7152 * bg[1] + 0.0722 * bg[2]) / 255, day = lum > 0.35;
+  root.setProperty('--bg', `rgb(${bg})`);
+  root.setProperty('--ink', day ? '#1b1916' : '#e7e2d9');
+  root.setProperty('--soft', day ? '#6f685d' : '#8d8b98');
+  let src = null, k = 0;
+  if (sa > -0.8) { src = sun; k = clamp((sa + 0.8) / 6, 0, 1) * 0.32; }
+  else if (sa < -6 && moon.alt > 0) { src = moon; k = moonLit(d) * 0.55 * clamp(moon.alt / rad / 5, 0, 1); }
+  const tint = day ? '62,44,26' : '0,0,0';
+  for (const el of els) {
+    const h = +el.dataset.h;
+    if (!src || k < 0.01) { el.style.textShadow = 'none'; continue; }
+    const len = Math.min(h * 8, h * 1.15 / Math.tan(Math.max(src.alt, 1.5 * rad)));
+    const dx = Math.sin(src.az) * len, dy = -Math.cos(src.az) * len;
+    el.style.textShadow = `${dx.toFixed(1)}px ${dy.toFixed(1)}px ${(0.4 + len * 0.07 + h * 0.12).toFixed(1)}px rgba(${tint},${k.toFixed(3)})`;
+  }
+  const when = new Date(t);
+  clock.textContent = (src === moon ? '◐ ' : sa > -0.8 ? '○ ' : '· ') + when.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+  clock.setAttribute('aria-label', offset > 1 ? 'light from ' + when.toLocaleString('en-GB') + ', back to now' : 'now');
+}
+
+// Scroll to move through the next day; the clock says what time the light is from. Tap it to come back to now.
+let queued = false;
+addEventListener('scroll', () => {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  offset = max > 0 ? scrollY / max * 24 * 60 : 0;
+  if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; render(); }); }
+}, { passive: true });
+clock.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+render();
+setInterval(render, 30000);
+</script>
 </body>
 </html>

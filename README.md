@@ -20,4 +20,8 @@ push to `main`. No build step: the site is the `public/` directory.
 
 ## Edit
 
-`public/index.html` is the whole page. Add a project as one more `<li>` in the list.
+`public/index.html` is the whole page. Add a project as one more `<li>` under "projects".
+
+Each link stands off the page at a height set by its rank, and the shadows come
+from the real sun (or moon) at the visitor's location, guessed from their time
+zone. Scrolling moves the light through the next 24 hours.
